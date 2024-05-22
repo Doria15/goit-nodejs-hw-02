@@ -21,7 +21,7 @@ router.get("/:contactId", async (req, res, next) => {
     const result = await getContactById(contactId);
 
     if (!result) {
-      throw httpError(404, "Contact ID Not Found");
+      throw httpError(404, "Not Found");
     }
 
     res.json(result);
@@ -34,7 +34,7 @@ router.post("/", async (req, res, next) => {
   try {
     const { error } = contactValidation.validate(req.body);
     if (error) {
-      throw httpError(400, "Missing Required Field");
+      throw httpError(400, "Missing Required Name Field");
     }
 
     const result = await addContact(req.body);
@@ -50,7 +50,7 @@ router.delete("/:contactId", async (req, res, next) => {
     const result = await removeContact(contactId);
 
     if (!result) {
-      throw httpError(404, "Contact ID Not Found");
+      throw httpError(404, "Not Found");
     }
 
     res.json({
@@ -65,14 +65,14 @@ router.put("/:contactId", async (req, res, next) => {
   try {
     const { error } = contactValidation.validate(req.body);
     if (error) {
-      throw httpError(400, "Missing Required Field");
+      throw httpError(400, "Missing Fields");
     }
 
     const { contactId } = req.params;
     const result = await updateContact(contactId, req.body);
 
     if (!result) {
-      throw httpError(404);
+      throw httpError(404, "Not Found");
     }
 
     res.json(result);
