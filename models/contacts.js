@@ -1,4 +1,5 @@
-// import fs from 'fs/promises'
+import fs from "fs/promises";
+import { nanoid } from "nanoid";
 
 const listContacts = async () => {};
 
