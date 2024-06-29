@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import gravatar from "gravatar";
 import Jimp from "jimp";
 import path from "path";
